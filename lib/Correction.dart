@@ -45,10 +45,6 @@ class _CorrectionState extends State<Correction> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-        /*appBar: AppBar(
-          toolbarHeight: 40,
-          backgroundColor: Color.fromARGB(206, 43, 109, 115),
-        ),*/
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Color.fromARGB(206, 43, 109, 115),
           selectedItemColor: Color.fromARGB(255, 255, 255, 255),
@@ -71,230 +67,233 @@ class _CorrectionState extends State<Correction> {
             fit: BoxFit.fill,
           )),
           //the following code is for back icon button
-          child: Column(
-            children: [
-              //First
-              Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 10),
-                  padding: EdgeInsets.only(top: 10),
-                  alignment: Alignment.topRight,
-                  child: InkWell(
-                    child: Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      size: 60,
-                      color: Color.fromARGB(206, 43, 109, 115),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context, false);
-                    },
-                  )),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                //First
+                Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: 10),
+                    alignment: Alignment.topRight,
+                    child: InkWell(
+                      child: Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        size: 60,
+                        color: Color.fromARGB(206, 43, 109, 115),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context, false);
+                      },
+                    )),
 
-              //#####################################################        her!!!!!!!!!!
-              //Second
-              Container(
-                //padding: EdgeInsets.only(top: 40),
-                margin: EdgeInsets.fromLTRB(20, 50, 20, 20),
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Container(
-                      child: Text(
-                        'لديك خطأ في أداء الركوع\nعن أبو حميد الساعدي رضي الله عنه أن رسول الله صلى الله عليه وسلم كان اذا ركع أمكن يديه من ركبتيه ثم هصر ظهره\n[صحيح البخاري]',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color.fromARGB(206, 43, 109, 115),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    ////////////////////////////////////////////////////////////////////////////////////////////
-                    Container(
-                      height: 345,
-                      width: 450,
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(top: 20),
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(53, 135, 142, 50),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(
-                            color: Color.fromARGB(206, 43, 109, 115),
-                            width: 2,
-                          )),
-                      //color: Color.fromARGB(206, 43, 109, 115),
-                      child: Column(
-                        children: [
-                          Padding(padding: EdgeInsets.only(top: 10)),
-                          Text("فيديو توضيحي للطريقة الصحيحة للركوع",
-                              style: TextStyle(
-                                color: Color(0xFFEDF0F5),
-                                fontSize: 16,
-                                fontFamily: "Lateef",
-                              )),
-                          Padding(padding: EdgeInsets.only(top: 10)),
-                          //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                          Container(
-                              height: 285,
-                              width: 400,
-                              //color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: controller.value.isInitialized
-                                        ? AspectRatio(
-                                            child: VideoPlayer(controller),
-                                            aspectRatio:
-                                                controller.value.aspectRatio,
-                                          )
-                                        : Container(),
-                                  ),
-                                  VideoProgressIndicator(
-                                    controller,
-                                    allowScrubbing: true,
-                                  ),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.only(bottom: 5, top: 5)),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                            Color.fromARGB(206, 43, 109, 115),
-                                          )),
-                                          onPressed: () async {
-                                            Duration? d =
-                                                await controller.position;
-                                            var value =
-                                                d! - Duration(seconds: 10);
-                                            controller.seekTo(value);
-                                          },
-                                          child: Text("<<")),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      ////////////////////////////
-                                      ElevatedButton(
-                                        child: IconButton(
-                                          icon: isPlay
-                                              ? Icon(Icons.play_arrow_rounded)
-                                              : Icon(Icons.pause),
-                                          onPressed: () {
-                                            setState(() {
-                                              isPlay
-                                                  ? controller.play()
-                                                  : controller.pause();
-                                              isPlay = !isPlay;
-                                            });
-                                          },
-                                        ),
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                          Color.fromARGB(206, 43, 109, 115),
-                                        )),
-                                        onPressed: () {},
-                                      ),
-                                      /////////////////////////////
-                                      /*
-                                          ElevatedButton(
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                Color.fromARGB(
-                                                    206, 43, 109, 115),
-                                              )),
-                                              onPressed: () {
-                                                controller.play();
-                                              },
-                                              child: Icon(
-                                                  Icons.play_arrow_rounded)),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          ElevatedButton(
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                Color.fromARGB(
-                                                    206, 43, 109, 115),
-                                              )),
-                                              onPressed: () {
-                                                controller.pause();
-                                              },
-                                              child: Icon(Icons.pause)),
-                                              */
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      ElevatedButton(
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                            Color.fromARGB(206, 43, 109, 115),
-                                          )),
-                                          onPressed: () async {
-                                            Duration? d =
-                                                await controller.position;
-                                            var value =
-                                                d! + Duration(seconds: 10);
-                                            controller.seekTo(value);
-                                          },
-                                          child: Text(">>")),
-                                    ],
-                                  )
-                                ],
-                              )),
-                          //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                        ],
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 15)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MaterialButton(
-                            child: Text("رجوع",
-                                style: TextStyle(
-                                  color: Color.fromARGB(230, 255, 255, 255),
-                                  fontSize: 16,
-                                )),
-                            color: Color.fromARGB(206, 43, 109, 115),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            elevation: 10,
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            }),
-                        SizedBox(
-                          width: 25,
+                //#####################################################        her!!!!!!!!!!
+                //Second
+                Container(
+                  //padding: EdgeInsets.only(top: 40),
+                  margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Text(
+                          'لديك خطأ في أداء الركوع\nعن أبو حميد الساعدي رضي الله عنه أن رسول الله صلى الله عليه وسلم كان اذا ركع أمكن يديه من ركبتيه ثم هصر ظهره\n[صحيح البخاري]',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Color.fromARGB(206, 43, 109, 115),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300),
                         ),
-                        MaterialButton(
-                            child: Text("حفظ ",
+                      ),
+                      ////////////////////////////////////////////////////////////////////////////////////////////
+                      Container(
+                        height: 345,
+                        width: 450,
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(top: 20),
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(53, 135, 142, 50),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                              color: Color.fromARGB(206, 43, 109, 115),
+                              width: 2,
+                            )),
+                        //color: Color.fromARGB(206, 43, 109, 115),
+                        child: Column(
+                          children: [
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text("فيديو توضيحي للطريقة الصحيحة للركوع",
                                 style: TextStyle(
-                                  color: Color.fromARGB(230, 255, 255, 255),
+                                  color: Color(0xFFEDF0F5),
                                   fontSize: 16,
+                                  fontFamily: "Lateef",
                                 )),
-                            color: Color.fromARGB(206, 43, 109, 115),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            elevation: 10,
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (context) {
-                                return Correction();
-                              }));
-                            }),
-                      ],
-                    )
-                  ],
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            Container(
+                                height: 285,
+                                width: 400,
+                                //color: Colors.amber,
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: controller.value.isInitialized
+                                          ? AspectRatio(
+                                              child: VideoPlayer(controller),
+                                              aspectRatio:
+                                                  controller.value.aspectRatio,
+                                            )
+                                          : Container(),
+                                    ),
+                                    VideoProgressIndicator(
+                                      controller,
+                                      allowScrubbing: true,
+                                    ),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.only(bottom: 5, top: 5)),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                              Color.fromARGB(206, 43, 109, 115),
+                                            )),
+                                            onPressed: () async {
+                                              Duration? d =
+                                                  await controller.position;
+                                              var value =
+                                                  d! - Duration(seconds: 10);
+                                              controller.seekTo(value);
+                                            },
+                                            child: Text("<<")),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        ////////////////////////////
+                                        ElevatedButton(
+                                          child: IconButton(
+                                            icon: isPlay
+                                                ? Icon(Icons.play_arrow_rounded)
+                                                : Icon(Icons.pause),
+                                            onPressed: () {
+                                              setState(() {
+                                                isPlay
+                                                    ? controller.play()
+                                                    : controller.pause();
+                                                isPlay = !isPlay;
+                                              });
+                                            },
+                                          ),
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                            Color.fromARGB(206, 43, 109, 115),
+                                          )),
+                                          onPressed: () {},
+                                        ),
+                                        /////////////////////////////
+                                        /*
+                                            ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all(
+                                                  Color.fromARGB(
+                                                      206, 43, 109, 115),
+                                                )),
+                                                onPressed: () {
+                                                  controller.play();
+                                                },
+                                                child: Icon(
+                                                    Icons.play_arrow_rounded)),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all(
+                                                  Color.fromARGB(
+                                                      206, 43, 109, 115),
+                                                )),
+                                                onPressed: () {
+                                                  controller.pause();
+                                                },
+                                                child: Icon(Icons.pause)),
+                                                */
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                              Color.fromARGB(206, 43, 109, 115),
+                                            )),
+                                            onPressed: () async {
+                                              Duration? d =
+                                                  await controller.position;
+                                              var value =
+                                                  d! + Duration(seconds: 10);
+                                              controller.seekTo(value);
+                                            },
+                                            child: Text(">>")),
+                                      ],
+                                    )
+                                  ],
+                                )),
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                          ],
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 15)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MaterialButton(
+                              child: Text("رجوع",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(230, 255, 255, 255),
+                                    fontSize: 16,
+                                  )),
+                              color: Color.fromARGB(206, 43, 109, 115),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              elevation: 10,
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          MaterialButton(
+                              child: Text("حفظ ",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(230, 255, 255, 255),
+                                    fontSize: 16,
+                                  )),
+                              color: Color.fromARGB(206, 43, 109, 115),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              elevation: 10,
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  return Correction();
+                                }));
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              //######################################################
-            ],
+                //######################################################
+              ],
+            ),
           ),
         ),
       ),

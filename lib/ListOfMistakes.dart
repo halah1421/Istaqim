@@ -61,123 +61,125 @@ class _ListOfMistakeState extends State<ListOfMistake> {
                   image: AssetImage("images/backpages.png"),
                   fit: BoxFit.fill,
                 )),
-                child: Column(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        padding: EdgeInsets.only(top: 10),
-                        alignment: Alignment.topRight,
-                        child: InkWell(
-                          child: Icon(
-                            Icons.keyboard_arrow_right_rounded,
-                            size: 60,
-                            color: Color.fromARGB(206, 43, 109, 115),
-                          ),
-                          onTap: () {
-                            Navigator.pop(context, false);
-                          },
-                        )),
-                    Container(
-                      height: 550,
-                      margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                      alignment: Alignment.center,
-                      child: ListView.builder(
-                        itemCount: MyMistakes.length,
-                        itemBuilder: (context, i) {
-                          return Container(
-                            height: 150,
-                            margin: EdgeInsets.only(top: 20),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                border: Border.all(
-                                    color: Color.fromARGB(206, 43, 109, 115),
-                                    width: 2)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "${MyMistakes[i]["name"]}",
-                                  width: 120,
-                                  height: 120,
-                                  fit: BoxFit.fill,
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Column(
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Correction()),
-                                        );
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.tv,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(width: 10),
-                                          Text("عرض التصحيح"),
-                                        ],
-                                      ),
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                        Color.fromARGB(206, 43, 109, 115),
-                                      )),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.download,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(width: 10),
-                                          Text("   حفظ الخطأ  "),
-                                        ],
-                                      ),
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                        Color.fromARGB(206, 43, 109, 115),
-                                      )),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.backspace_outlined,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(width: 10),
-                                          Text("  تجاهل الخطأ  "),
-                                        ],
-                                      ),
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                        Color.fromARGB(206, 43, 109, 115),
-                                      )),
-                                    )
-                                  ],
-                                ),
-                              ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(top: 10),
+                          alignment: Alignment.topRight,
+                          child: InkWell(
+                            child: Icon(
+                              Icons.keyboard_arrow_right_rounded,
+                              size: 60,
+                              color: Color.fromARGB(206, 43, 109, 115),
                             ),
-                          );
-                        },
+                            onTap: () {
+                              Navigator.pop(context, false);
+                            },
+                          )),
+                      Container(
+                        height: 550,
+                        margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                        alignment: Alignment.center,
+                        child: ListView.builder(
+                          itemCount: MyMistakes.length,
+                          itemBuilder: (context, i) {
+                            return Container(
+                              height: 150,
+                              margin: EdgeInsets.only(top: 20),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  border: Border.all(
+                                      color: Color.fromARGB(206, 43, 109, 115),
+                                      width: 2)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "${MyMistakes[i]["name"]}",
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Correction()),
+                                          );
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.tv,
+                                              color: Colors.white,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text("عرض التصحيح"),
+                                          ],
+                                        ),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                          Color.fromARGB(206, 43, 109, 115),
+                                        )),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.download,
+                                              color: Colors.white,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text("   حفظ الخطأ  "),
+                                          ],
+                                        ),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                          Color.fromARGB(206, 43, 109, 115),
+                                        )),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.backspace_outlined,
+                                              color: Colors.white,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text("  تجاهل الخطأ  "),
+                                          ],
+                                        ),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                          Color.fromARGB(206, 43, 109, 115),
+                                        )),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ))));
   }
 }
