@@ -16,11 +16,11 @@ class _HomeState extends State<Home> {
   void onItemTapped(int index) {
     if (index == 0) {
       Navigator.of(context)
-          .push(new MaterialPageRoute(builder: (context) => new Profile()));
+          .push(new MaterialPageRoute(builder: (context) => new Home()));
     }
     if (index == 1) {
       Navigator.of(context)
-          .push(new MaterialPageRoute(builder: (context) => new Home()));
+          .push(new MaterialPageRoute(builder: (context) => new Profile()));
     }
     if (index == 2) {
       Navigator.of(context)
