@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
     }
     if (index == 1) {
       Navigator.of(context)
-          .push(new MaterialPageRoute(builder: (context) => new Profile()));
+          .push(new MaterialPageRoute(builder: (context) => new Home()));
     }
     if (index == 2) {
       Navigator.of(context)
