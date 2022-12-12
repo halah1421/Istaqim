@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:graduation_interface/ListOfMistakes.dart';
 import 'package:graduation_interface/Profile.dart';
 import 'package:graduation_interface/AboutUs.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -27,6 +29,15 @@ class _HomeState extends State<Home> {
           .push(new MaterialPageRoute(builder: (context) => new AboutUs()));
     }
   }
+  late File file;
+  var videopicker = ImagePicker();
+  Future uploadVideo(BuildContext context) async {
+    var pickedVideo = await videopicker.pickVideo(source: ImageSource.gallery);
+    setState(() {
+      file = pickedVideo as File;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -187,14 +198,9 @@ class _HomeState extends State<Home> {
                                   color: Color.fromARGB(206, 43, 109, 115))),
                           SizedBox(height: 20),
                           IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ListOfMistake()),
-                              );
-                            },
+                              onPressed: () async {
+                                await uploadVideo(context);
+                              },
                             icon: Icon(Icons.file_upload_rounded),
                             alignment: Alignment.center,
                             iconSize: 95,
